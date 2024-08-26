@@ -3,16 +3,16 @@ import { useRef, useState } from 'react'
 import { checkValidData } from "../utils/validate"; 
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword ,updateProfile} from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {addUser} from '../utils/userSlice';
+import { Netflix_BG, USER_AVATAR } from "../utils/constants";
 
 
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState();
     const [errorMesage, setErrorMessage] = useState(null);
-    const navigate= useNavigate(); 
+
     const dispatach = useDispatch();
     
 
@@ -23,7 +23,6 @@ const Login = () => {
 
     const handleButtonClick = () => {
         const message = checkValidData(email.current.value, password.current.value );
-        console.log('message',message);
         setErrorMessage(message);
 
         if(message)return;
@@ -34,13 +33,12 @@ const Login = () => {
             // Signed up 
             const user = userCredential.user;
             updateProfile(user, {
-                displayName: fullName.current.value, photoURL: "https://avatars.githubusercontent.com/u/53165415?v=4",
+                displayName: fullName.current.value, photoURL:USER_AVATAR,
               }).then(() => {
                 // Profile updated!
                 // ...
                 const {uid,email,displayName,photoURL} = auth.currentUser;
-                dispatach(addUser({uid:uid,email:email,displayName:displayName ,photoURL:photoURL,}));
-                navigate('/browse');
+                dispatach(addUser({uid:uid,email:email,displayName:displayName ,photoURL:photoURL}));
               }).catch((error) => {
                 // An error occurred
                 // ...
@@ -63,9 +61,9 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user);
-                navigate('/browse');
 
+                
+                
                 // ...
             })
             .catch((error) => {
@@ -78,7 +76,6 @@ const Login = () => {
         
     };
     const toggleSignInForm = () => {
-        console.log('Sign up now')
         setIsSignInForm(!isSignInForm);
 
     };
@@ -86,7 +83,7 @@ const Login = () => {
     <div>
         <Header />
     <div className="absolute"> 
-         <img src="https://assets.nflxext.com/ffe/siteui/vlv3/b2c3e95b-b7b5-4bb7-a883-f4bfc7472fb7/90f00445-6bf9-4c3d-a153-66f3e17902bd/DE-en-20240805-POP_SIGNUP_TWO_WEEKS-perspective_WEB_7ec88160-f36a-4a31-9c05-498eda41620d_medium.jpg" alt='Netflix bg' />
+         <img src={Netflix_BG} alt='Netflix bg' />
     </div>
      <form onSubmit={(e)=>e.preventDefault()} className="w-3/12 absolute p-8 my-36 mx-auto right-0 left-0 bg-black text-white rounded-lg bg-opacity-80">
     < h1 className="text-white text-3xl">{isSignInForm ? "Sign In":"Sign Up"}</h1>

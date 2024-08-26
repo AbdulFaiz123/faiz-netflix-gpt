@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({     
     name: 'user',   
     initialState: null,     
-    reducers: {         
+    reducers: { 
+         // it's used to add or update the user data in the state.
         addUser:(state,action) => {
            return action.payload;
 
