@@ -60,10 +60,10 @@ const Header = () => {
     dispatach(changeLanguage(e.target.value));
     }
   return (
-    <div className='w-screen absolute z-10 px-8 py-2 bg-gradient-to-b from-black flex justify-between'>
-        <img className='w-44' src={LOGO} alt='Netflix Logo' />
+    <div className='w-screen absolute z-10 px-8 py-2 bg-gradient-to-b from-black flex flex-col md:flex-row md:justify-between'>
+        <img className='w-44 mx-auto md:mx-0 ' src={LOGO} alt='Netflix Logo' />
 
-      { user && <div  className=' flex p-4'>
+      { user && <div  className=' flex p-4 justify-between'>
        {showGptSearch &&
          <select className='p-2 m-2 bg-gray-900 text-white rounded-lg' onChange={handleLanguageChange}>
           {SUPPORTED_LANGUAGES.map((lang) => (
@@ -75,11 +75,11 @@ const Header = () => {
           {showGptSearch? "HomePage":"GPT Search "}
         </button>
         {user && user.photoURL ? (
-          <img className='w-12 h-12' src={user.photoURL} alt='userIcon' />
+          <img className='hidden md:block w-12 h-12' src={user.photoURL} alt='userIcon' />
         ) : (
           <div className='w-8 h-8 bg-gray-400 rounded-full'></div> // Placeholder if no photoURL
         )}
-          <button className='font-bold text-red-600' onClick={handleSignOut}>Sign Out</button>
+          <button className='font-bold text-base text-red-400' onClick={handleSignOut}>SignOut</button>
         </div>}
     </div>
      

@@ -83,14 +83,14 @@ const Login = () => {
     <div>
         <Header />
     <div className="absolute"> 
-         <img src={Netflix_BG} alt='Netflix bg' />
+         <img className="h-screen object-cover" src={Netflix_BG} alt='Netflix bg' />
     </div>
-     <form onSubmit={(e)=>e.preventDefault()} className="w-3/12 absolute p-8 my-36 mx-auto right-0 left-0 bg-black text-white rounded-lg bg-opacity-80">
-    < h1 className="text-white text-3xl">{isSignInForm ? "Sign In":"Sign Up"}</h1>
+     <form onSubmit={(e)=>e.preventDefault()} className="w-full md:w-3/12 absolute p-8 my-36 mx-auto right-0 left-0 bg-black text-white rounded-lg bg-opacity-80">
+    < h1 className="text-white text-2xl md:text-3xl">{isSignInForm ? "Sign In":"Sign Up"}</h1>
             {!isSignInForm  && <input ref={fullName} type='text' placeholder='Full Name' className="p-4 my-4 w-full bg-gray-700"/>}            
             <input ref={email} type='email' placeholder='Email or phone number' className="p-4 my-4 w-full bg-gray-700" />
             <input ref={password} type='password' placeholder='Password' className="p-4 my-4 w-full bg-gray-700"/>
-            <p className="text-red-500 font-bold text-lg y-2 ">{errorMesage}</p>
+            <p className="text-red-500 font-bold text-sm md:text-lg y-2 ">{errorMesage}</p>
             <button className="bg-red-700 p-4 my-4 w-full rounded-lg" onClick={handleButtonClick}>{isSignInForm ? "Sign In":"Sign Up"}</button>
             <p className="text-sm text-white cursor-pointer" onClick={toggleSignInForm}>{isSignInForm ? "New to Netflix? Sign up now.":"Already Registered"}</p>
 
