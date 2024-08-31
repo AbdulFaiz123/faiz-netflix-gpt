@@ -2,7 +2,7 @@ import React from 'react'
 import MovieCard from './MovieCard'
 
 const MovieList = ({title ,movies}) => {
-    console.log('movies',movies)
+    
     if (!movies || movies.length === 0) {
         return <div>No movies available.</div>; // Or a loading spinner, or an error message
       }

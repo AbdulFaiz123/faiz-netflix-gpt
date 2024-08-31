@@ -20,4 +20,4 @@ return ( <div className='w-screen'>
 );
 };
 
-export default VideoBackground
+export default VideoBackground 
